@@ -10,6 +10,10 @@ batch_size = 128
 x = tf.placeholder('float',[None,784])
 y = tf.placeholder('float')
 
+keep_rate = 0.8
+keep_prob = tf.placeholder(tf.float32)
+
+
 def conv2d(x,W):
 	return tf.nn.conv2d(x,W,strides = [1,1,1,1], padding = 'SAME')
 
@@ -37,6 +41,8 @@ def convolutional_neural_network(x):
 
 	fc = tf.reshape(conv2,[-1,7*7*64])
 	fc = tf.nn.relu(tf.matmul(fc,weights['W_fc'])+biases['b_fc'])
+
+	fc = tf.nn.dropout(fc,keep_rate)
 
 	output = tf.matmul(fc,weights['out'])+biases['out']
 
