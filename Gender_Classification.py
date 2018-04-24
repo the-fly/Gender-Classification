@@ -60,4 +60,4 @@ for ex in mlp.predict(X_predict):
 		print("Male")
 	i+=1
     
-plt.show()
+plt.show()# Gender-Classification
